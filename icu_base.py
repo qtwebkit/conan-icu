@@ -12,7 +12,7 @@ class ICUBase(ConanFile):
     license = "ICU"
     description = "ICU is a mature, widely used set of C/C++ and Java libraries " \
                   "providing Unicode and Globalization support for software applications."
-    url = "https://github.com/bincrafters/conan-icu"
+    url = "https://github.com/qtwebkit/conan-icu"
     topics = ("conan", "icu", "icu4c", "i see you", "unicode")
     author = "Bincrafters <bincrafters@gmail.com>"
     exports = ["LICENSE.md", "icu_base.py"]
