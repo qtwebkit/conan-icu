@@ -1,8 +1,6 @@
 ## Package Status
 
-| Bintray | Windows | Linux & macOS |
-|:--------:|:---------:|:-----------------:|
-|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/icu%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/icu%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-icu?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-icu)|[![Build Status](https://travis-ci.com/bincrafters/conan-icu.svg)](https://travis-ci.com/bincrafters/conan-icu)|
+[![Build status](https://ci.appveyor.com/api/projects/status/github/qtwebkit/conan-icu?svg=true)](https://ci.appveyor.com/project/qtwebkit/conan-icu)
 
 ## Conan Information
 
