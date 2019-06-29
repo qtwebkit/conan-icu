@@ -8,12 +8,12 @@ class ICUConan(ICUBase):
     name = "icu"
     version = ICUBase.version
     settings = "os", "arch", "compiler", "build_type"
-    options = {"shared": [True, False],
+    options = {#"shared": [True, False],
                "fPIC": [True, False],
                "data_packaging": ["files", "archive", "library", "static"],
                "with_unit_tests": [True, False],
                "silent": [True, False]}
-    default_options = {"shared": False,
+    default_options = {#"shared": False,
                        "fPIC": True,
                        "data_packaging": "archive",
                        "with_unit_tests": False,
@@ -43,8 +43,8 @@ class ICUConan(ICUBase):
         def lib_name(lib):
             name = lib
             if self.settings.os == "Windows":
-                if not self.options.shared:
-                    name = 's' + name
+                #if not self.options.shared:
+                #    name = 's' + name
                 if self.settings.build_type == "Debug":
                     name += 'd'
             return name
@@ -61,8 +61,8 @@ class ICUConan(ICUBase):
         data_path = os.path.join(data_dir, data_file).replace('\\', '/')
         self.env_info.ICU_DATA.append(data_path)
 
-        if not self.options.shared:
-            self.cpp_info.defines.append("U_STATIC_IMPLEMENTATION")
+        #if not self.options.shared:
+        #    self.cpp_info.defines.append("U_STATIC_IMPLEMENTATION")
         if self.settings.os == 'Linux':
             self.cpp_info.libs.append('dl')
 

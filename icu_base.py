@@ -81,8 +81,8 @@ class ICUBase(ConanFile):
         # self._replace_pythonpath() # ICU 64.1
 
         self._env_build = AutoToolsBuildEnvironment(self)
-        if not self.options.get_safe("shared"):
-            self._env_build.defines.append("U_STATIC_IMPLEMENTATION")
+        #if not self.options.get_safe("shared"):
+        #    self._env_build.defines.append("U_STATIC_IMPLEMENTATION")
         if tools.is_apple_os(self._the_os) and self.settings.get_safe("os.version"):
             self._env_build.flags.append(tools.apple_deployment_target_flag(self._the_os,
                                                                             self.settings.os.version))
@@ -170,7 +170,7 @@ class ICUBase(ConanFile):
 
         if self.settings.get_safe("build_type") == "Debug":
             args.extend(["--disable-release", "--enable-debug"])
-        if self.options.get_safe("shared"):
+        if True: # self.options.get_safe("shared"):
             args.extend(["--disable-static", "--enable-shared"])
         else:
             args.extend(["--enable-static", "--disable-shared"])
