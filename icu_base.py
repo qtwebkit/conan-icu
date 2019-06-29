@@ -7,7 +7,7 @@ from conans import ConanFile, tools, AutoToolsBuildEnvironment
 
 
 class ICUBase(ConanFile):
-    version = "63.1"
+    version = "63.2"
     homepage = "http://site.icu-project.org"
     license = "ICU"
     description = "ICU is a mature, widely used set of C/C++ and Java libraries " \
