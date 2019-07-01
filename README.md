@@ -1,6 +1,6 @@
 ## Package Status
 
-[![Build status](https://ci.appveyor.com/api/projects/status/github/qtwebkit/conan-icu?svg=true)](https://ci.appveyor.com/project/qtwebkit/conan-icu)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/qtwebkit/conan-icu?svg=true)](https://ci.appveyor.com/project/annulen/conan-icu)
 
 ## Conan Information
 
