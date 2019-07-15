@@ -39,4 +39,11 @@ if __name__ == "__main__":
                 filtered_builds.append([settings, options, env_vars, build_requires])
             builder.builds = filtered_builds
 
+        # Skip static build
+        items = []
+        for item in builder.items:
+            if item.options["icu:shared"] == True:
+                items.append(item)
+        builder.items = items
+
     builder.run()
