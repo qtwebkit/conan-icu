@@ -22,6 +22,6 @@ if __name__ == "__main__":
         for item in builder.items:
             if item.options["icu:shared"] == True:
                 items.append(item)
-        builder.items = item
+        builder.items = items
 
     builder.run()
