@@ -92,8 +92,8 @@ class ICUBase(ConanFile):
         self._workaround_icu_20545()
 
         self._env_build = AutoToolsBuildEnvironment(self)
-        #if not self.options.get_safe("shared"):
-        #    self._env_build.defines.append("U_STATIC_IMPLEMENTATION")
+        if not self.options.get_safe("shared"):
+            self._env_build.defines.append("U_STATIC_IMPLEMENTATION")
         if tools.is_apple_os(self._the_os):
             self._env_build.defines.append("_DARWIN_C_SOURCE")
             if self.settings.get_safe("os.version"):
@@ -186,7 +186,7 @@ class ICUBase(ConanFile):
 
         if self.settings.get_safe("build_type") == "Debug":
             args.extend(["--disable-release", "--enable-debug"])
-        if True: # self.options.get_safe("shared"):
+        if self.options.get_safe("shared"):
             args.extend(["--disable-static", "--enable-shared"])
         else:
             args.extend(["--enable-static", "--disable-shared"])
