@@ -2,9 +2,9 @@ environment:
   PYTHON_HOME: "C:\\Python37"
   CONAN_USERNAME: "qtproject"
   CONAN_LOGIN_USERNAME: "annulen"
-  CONAN_CHANNEL: "stable"
   CONAN_UPLOAD: "https://api.bintray.com/conan/qtproject/conan"
   CONAN_OPTIONS: "*:shared=True,icu:data_packaging=library"
+  CONAN_ARCHS: "x86,x86_64"
 
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
