@@ -18,7 +18,7 @@ environment:
 #      CONAN_BUILD_TYPES: Release
 
 install:
-  - git submodule update --init --recursive
+  - git submodule update --init --recursive --depth=1
   - set PATH=%PYTHON_HOME%;%PYTHON_HOME%/Scripts/;%PATH%
   - conan-shared-scripts\install_conan.bat
 
