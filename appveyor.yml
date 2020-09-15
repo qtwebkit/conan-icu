@@ -23,9 +23,9 @@ environment:
       CONAN_BUILD_TYPES: Release
 
 install:
+  - git submodule update --init --recursive
   - set PATH=%PYTHON_HOME%;%PYTHON_HOME%/Scripts/;%PATH%
-  - pip.exe install -r conan_requirements.txt
-  - conan user # It creates the conan data directory
+  - conan-shared-scripts\install_conan.bat
 
 build_script:
-  - python build.py
+  - python conan-shared-scripts/build.py --shared icu
