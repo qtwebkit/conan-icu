@@ -1,0 +1,37 @@
+on: [push, pull_request]
+
+env:
+  CONAN_USERNAME: "qtproject"
+  CONAN_UPLOAD: "https://api.bintray.com/conan/qtproject/conan"
+  CONAN_OPTIONS: "*:shared=True,icu:data_packaging=library"
+  CONAN_ARCHS: "x86,x86_64"
+  CONAN_UPLOAD_ONLY_WHEN_TAG: 1
+  CONAN_VISUAL_RUNTIMES: "MD,MDd"
+
+jobs:
+  MinGW:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        mingwVersion: ["8"]
+        buildType: [Release]
+        arch: [x86, x86_64]
+        threads: [posix]
+        include:
+          - arch: "x86"
+            exceptions: dwarf2
+          - arch: "x86_64"
+            exceptions: seh
+    steps:
+      - uses: actions/checkout@v1
+      - name: install
+        run: |
+          git submodule update --init --recursive
+          conan-shared-scripts\install_conan.bat
+      - name: build
+        env:
+          CONAN_BUILD_TYPES: ${{matrix.buildType}}
+          MINGW_CONFIGURATIONS: ${{matrix.mingwVersion}}@${{matrix.arch}}@${{matrix.exceptions}}@${{matrix.threads}}
+        run: |
+          python conan-shared-scripts/build.py --shared icu
