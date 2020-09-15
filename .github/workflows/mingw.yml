@@ -20,10 +20,14 @@ jobs:
           - arch: "x86_64"
             exceptions: seh
     steps:
-      - uses: actions/checkout@v1
+      - name: Disable autocrlf
+        run: |
+          git config --global core.autocrlf false
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: install
         run: |
-          git submodule update --init --recursive
           conan-shared-scripts\install_conan.bat
       - name: build
         env:
