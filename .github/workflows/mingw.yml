@@ -26,7 +26,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: install
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.8"
+      - name: Install Conan
         run: |
           conan-shared-scripts\install_conan.bat
       - name: build
