@@ -1,0 +1,59 @@
+on: [push, pull_request]
+
+env:
+  CONAN_OPTIONS: "*:shared=True,icu:data_packaging=library"
+  CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
+
+jobs:
+  MinGW:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { name: "VS2019 Release", os: windows-latest, compiler: "VISUAL", version: 16, build_type: "Release" }
+          - { name: "VS2019 Debug",   os: windows-latest, compiler: "VISUAL", version: 16, build_type: "Debug" }
+
+    steps:
+      - name: Disable autocrlf
+        run: |
+          git config --global core.autocrlf false
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.8"
+      - name: Install Conan
+        run: |
+          conan-shared-scripts\install_conan.bat
+      - name: Prepare environment
+        shell: bash --noprofile --norc -eo pipefail -x {0}
+        run: |
+          echo "::set-env name=CONAN_${{ matrix.config.compiler }}_VERSIONS::${{ matrix.config.version }}"
+          echo "export CONAN_${{ matrix.config.compiler }}_VERSIONS=${{ matrix.config.version }}"
+          compiler="${{ matrix.config.compiler }}"
+          version="${{ matrix.config.version }}"
+          docker_image="${{ matrix.config.dockerImage }}"
+          if [[ "${compiler}" == "GCC" ]] || [[ "${compiler}" == "CLANG" ]]; then
+            if [[ "${docker_image}" == "" ]]; then
+              compiler_lower="${compiler,,}"
+              version_withoutdot="${version//./}"
+              docker_image="conanio/${compiler_lower}${version_withoutdot}"
+            fi
+            echo "::set-env name=CONAN_DOCKER_IMAGE::${docker_image}"
+            echo "export CONAN_DOCKER_IMAGE=${docker_image}"
+          fi
+          build_type="${{ matrix.config.buildType }}"
+          if ! [[ "${build_type}" == "" ]]; then
+            echo "::set-env name=CONAN_BUILD_TYPES::${build_type}"
+            echo "export CONAN_BUILD_TYPES=${build_type}"
+          fi
+          if [[ "${compiler}" == "APPLE_CLANG" ]] && [[ "${version}" == "11.0" ]]; then
+            sudo xcode-select -switch "/Applications/Xcode_11.3.1.app"
+            clang++ --version
+          fi
+      - name: build
+        run: |
+          python conan-shared-scripts/build.py --shared icu
