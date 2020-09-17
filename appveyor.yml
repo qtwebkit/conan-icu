@@ -16,4 +16,4 @@ install:
   - conan-shared-scripts\install_conan.bat
 
 build_script:
-  - python conan-shared-scripts/build.py --shared icu 67.1
+  - python conan-shared-scripts/build.py --shared

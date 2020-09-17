@@ -38,4 +38,4 @@ jobs:
       - name: build
         env: ${{ matrix.config.env }}
         run: |
-          python conan-shared-scripts/build.py --shared icu 67.1
+          python conan-shared-scripts/build.py --shared
