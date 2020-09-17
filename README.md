@@ -1,43 +1,26 @@
+
 ## Package Status
 
-[![Build status](https://ci.appveyor.com/api/projects/status/github/qtwebkit/conan-icu?svg=true)](https://ci.appveyor.com/project/annulen/conan-icu)
-
-## Conan Information
-
-Bincrafters packages can be found in the following public Conan repository:
-
-[Bincrafters Public Conan Repository on Bintray](https://bintray.com/bincrafters/public-conan)
-
-*Note: You can click the "Set Me Up" button on the Bintray page above for instructions on using packages from this repository.*
-
-## Issues
-
-If you wish to report an issue or make a request for a Bincrafters package, please do so here:
-
-[Bincrafters Community Issues](https://github.com/bincrafters/community/issues)
+AppVeyor | GitHub Actions | Bintray
+-------- | -------------- | -------
+[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/qtwebkit/conan-icu?svg=true)](https://ci.appveyor.com/project/annulen/conan-icu) | [![GitHub Actions Status](https://github.com/qtwebkit/conan-icu/workflows/conan/badge.svg)](https://github.com/qtwebkit/conan-icu/actions) | [![Bintray](https://api.bintray.com/packages/qtproject/conan/icu%3Aqtproject/images/download.svg)](https://bintray.com/qtproject/conan/icu%3Aqtproject/_latestVersion)
 
 ## General Information
 
-This GIT repository is managed by the Bincrafters team and holds files related to Conan.io.  For detailed information about Bincrafters and Conan.io, please visit the following resources:
+This repository is used to build recipe from [conan-center-index](https://github.com/conan-io/conan-center-index/tree/master/recipes/icu)
+with options and compilers required by QtWebKit project. It contains only CI build
+instructions and patches to original recipe which might be occasionally required.
 
-[Bincrafters Wiki - Common README](https://github.com/bincrafters/community/wiki/Common-README.md)
+Any issues related to building QtWebKit should be submitted to
+[QtWebKit issue tracker](https://github.com/qtwebkit/qtwebkit/issues).
+All feedback on this recipe which is not related to QtWebKit build issues should be
+submitted to [upstream issue tracker](https://github.com/conan-io/conan-center-index/issues).
 
-[Bincrafters Technical Documentation](http://bincrafters.readthedocs.io/en/latest/)
+## Conan Information
 
-[Bincrafters Blog](https://bincrafters.github.io)
+Conan packages can be found in our [Bintray repository](https://bintray.com/qtproject/conan).
+Primary intent of these packages is to support building QtWebKit on various platforms.
+While it's possible that you can find these packages useful for different purposes,
+build options and set of platforms and compilers may be changed in future without notice.
 
-## License Information
 
-Bincrafters packages are hosted on [Bintray](https://bintray.com) and contain Open-Source software which is licensed by the software's maintainers and NOT Bincrafters.  For each Open-Source package published by Bincrafters, the packaging process obtains the required license files along with the original source files from the maintainer, and includes these license files in the generated Conan packages.
-
-The contents of this GIT repository are completely separate from the software being packaged and therefore licensed separately.  The license for all files contained in this GIT repository are defined in the [LICENSE.md](LICENSE.md) file in this repository.  The licenses included with all Conan packages published by Bincrafters can be found in the Conan package directories in the following locations, relative to the Conan Cache root (`~/.conan` by default):
-
-### License(s) for packaged software:
-
-    ~/.conan/data/<pkg_name>/<pkg_version>/bincrafters/package/<random_package_id>/license/<LICENSE_FILES_HERE>
-
-*Note :   The most common filenames for OSS licenses are `LICENSE` AND `COPYING` without file extensions.*
-
-### License for Bincrafters recipe:
-
-    ~/.conan/data/<pkg_name>/<pkg_version>/bincrafters/export/LICENSE.md
